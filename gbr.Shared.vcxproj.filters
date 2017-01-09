@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{aa761e5f-f652-4056-8dc3-3c0e782f94a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{15827008-5028-4f0b-bee4-c016b40c1a18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\json">
+      <UniqueIdentifier>{65d5c033-e9bc-4bde-9d9c-d05adb62bdf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Clients">
+      <UniqueIdentifier>{db47168c-5c55-42d4-bd22-cde4c2b1c972}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Commands\BaseCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\MoveTo.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Dependencies\json\json.hpp">
+      <Filter>Dependencies\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\UseSkill.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\DropBuff.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\Resign.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Clients\NamedPipeClient.h">
+      <Filter>Clients</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Commands\BaseCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\MoveTo.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\DropBuff.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\UseSkill.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\Resign.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Clients\NamedPipeClient.cpp">
+      <Filter>Clients</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
