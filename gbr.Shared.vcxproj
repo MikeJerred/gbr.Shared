@@ -136,7 +136,7 @@
     <ClCompile Include="Commands\UseSkill.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GWToolboxpp\GWCA\GWCA.2015.vcxproj">
+    <ProjectReference Include="..\GWCA\GWCA.2015.vcxproj">
       <Project>{b3359f05-68cf-4e7f-b9d6-d106f6d48a38}</Project>
     </ProjectReference>
   </ItemGroup>
