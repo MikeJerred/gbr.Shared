@@ -31,15 +31,6 @@ namespace gbr {
 
                 GW::Gamethread().Enqueue([=]() {
                     GW::Agents().Move(pos);
-
-                    auto agents = GW::Agents().GetAgentArray();
-                    const auto adjacentSq = GW::Constants::Range::Adjacent * GW::Constants::Range::Adjacent;
-                    for (auto agent : agents) {
-                        if (agent && agent->GetIsSignpostType() && agent->pos.SquaredDistanceTo(pos) < adjacentSq) {
-                            GW::Agents().GoSignpost(agent);
-                            return;
-                        }
-                    }
                 });
             }
         }

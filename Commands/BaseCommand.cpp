@@ -1,4 +1,5 @@
 #include "BaseCommand.h"
+#include "AggressiveMoveTo.h"
 #include "DropBuff.h"
 #include "MoveTo.h"
 #include "Resign.h"
@@ -21,11 +22,13 @@ namespace gbr {
                 case CommandType::Resign:
                     Resign::Execute(static_cast<Resign::Request*>(request));
                     break;
+                case CommandType::AggressiveMoveTo:
+                    AggressiveMoveTo::Execute(static_cast<AggressiveMoveTo::Request*>(request));
+                    break;
                 default:
                     throw std::invalid_argument(std::string("Invalid Command Type: ") + std::to_string((int)request->type));
                 }
             }
         }
     }
-    
 }

@@ -10,7 +10,8 @@ namespace gbr {
                 MoveTo,
                 UseSkill,
                 DropBuff,
-                Resign
+                Resign,
+                AggressiveMoveTo
             };
 
 

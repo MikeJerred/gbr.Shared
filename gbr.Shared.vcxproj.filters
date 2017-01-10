@@ -36,6 +36,9 @@
     <ClInclude Include="Clients\NamedPipeClient.h">
       <Filter>Clients</Filter>
     </ClInclude>
+    <ClInclude Include="Commands\AggressiveMoveTo.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Commands\BaseCommand.cpp">
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="Clients\NamedPipeClient.cpp">
       <Filter>Clients</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\AggressiveMoveTo.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
