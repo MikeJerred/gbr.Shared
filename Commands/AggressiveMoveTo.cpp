@@ -58,6 +58,22 @@ namespace gbr {
                     }
                 });
             }
+
+            DWORD AggressiveMoveTo::GetTargetEnemyId() {
+                return targetEnemyId;
+            }
+
+            void AggressiveMoveTo::SetTargetEnemyId(DWORD agentId) {
+                targetEnemyId = agentId;
+            }
+
+            DWORD AggressiveMoveTo::GetTargetNpcId() {
+                return targetNpcId;
+            }
+
+            void AggressiveMoveTo::SetTargetNpcId(DWORD agentId) {
+                targetNpcId = agentId;
+            }
         }
     }
 }
