@@ -3,12 +3,13 @@
 #include "DropBuff.h"
 #include "MoveTo.h"
 #include "Resign.h"
+#include "Terminate.h"
 #include "UseSkill.h"
 
 namespace gbr {
     namespace Shared {
         namespace Commands {
-            void BaseCommand::ExecuteCommand(BaseRequest* request) {
+            bool BaseCommand::ExecuteCommand(BaseRequest* request) {
                 switch (request->type) {
                 case CommandType::MoveTo:
                     MoveTo::Execute(static_cast<MoveTo::Request*>(request));
@@ -25,9 +26,14 @@ namespace gbr {
                 case CommandType::AggressiveMoveTo:
                     AggressiveMoveTo::Execute(static_cast<AggressiveMoveTo::Request*>(request));
                     break;
+                case CommandType::Terminate:
+                    return Terminate::Execute(static_cast<Terminate::Request*>(request));
+                    break;
                 default:
                     throw std::invalid_argument(std::string("Invalid Command Type: ") + std::to_string((int)request->type));
                 }
+
+                return false;
             }
         }
     }

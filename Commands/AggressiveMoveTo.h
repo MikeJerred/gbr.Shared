@@ -16,13 +16,10 @@ namespace gbr {
                 };
 
                 static void Execute(Request* request);
-                static DWORD GetTargetEnemyId();
-                static void SetTargetEnemyId(DWORD agentId);
-                static DWORD GetTargetNpcId();
-                static void SetTargetNpcId(DWORD agentId);
+                static DWORD GetTargetAgentId();
+                static void SetTargetAgentId(DWORD agentId);
             private:
-                static DWORD targetEnemyId;
-                static DWORD targetNpcId;
+                static DWORD targetAgentId;
             };
         }
     }

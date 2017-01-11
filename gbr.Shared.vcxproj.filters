@@ -39,6 +39,9 @@
     <ClInclude Include="Commands\AggressiveMoveTo.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Commands\Terminate.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Commands\BaseCommand.cpp">
@@ -60,6 +63,9 @@
       <Filter>Clients</Filter>
     </ClCompile>
     <ClCompile Include="Commands\AggressiveMoveTo.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\Terminate.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>

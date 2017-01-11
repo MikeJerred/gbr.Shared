@@ -11,7 +11,8 @@ namespace gbr {
                 UseSkill,
                 DropBuff,
                 Resign,
-                AggressiveMoveTo
+                AggressiveMoveTo,
+                Terminate
             };
 
 
@@ -31,7 +32,7 @@ namespace gbr {
                     const CommandType type;
                 };
 
-                static void ExecuteCommand(BaseRequest* request);
+                static bool ExecuteCommand(BaseRequest* request);
             };
         }
     }

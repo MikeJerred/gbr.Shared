@@ -5,74 +5,66 @@
 namespace gbr {
     namespace Shared {
         namespace Commands {
-            DWORD AggressiveMoveTo::targetEnemyId = 0;
-            DWORD AggressiveMoveTo::targetNpcId = 0;
+            DWORD AggressiveMoveTo::targetAgentId = 0;
 
             void AggressiveMoveTo::Execute(Request* request) {
                 auto pos = GW::GamePos(request->x, request->y, request->zPlane);
 
                 GW::Gamethread().Enqueue([=]() {
-                    std::vector<GW::Agent*> enemies;
-                    std::vector<GW::Agent*> npcs;
+                    std::vector<GW::Agent*> closeAgents;
                     const auto adjacentSq = GW::Constants::Range::Adjacent * GW::Constants::Range::Adjacent;
 
                     for (auto agent : GW::Agents().GetAgentArray()) {
-                        if (agent
-                            && !agent->GetIsDead()
-                            && agent->GetIsLivingType()
-                            && agent->pos.SquaredDistanceTo(pos) < adjacentSq) {
-
-                            if (agent->Allegiance == 3 && !(agent->TypeMap & 0x4000)) {
-                                enemies.push_back(agent);
-                            }
-                            else if (agent->IsNPC() && !(agent->TypeMap & 0x4000)) {
-                                npcs.push_back(agent);
-                            }
+                        if (agent && agent->pos.SquaredDistanceTo(pos) < adjacentSq) {
+                            closeAgents.push_back(agent);
                         }
                     }
 
-                    if (enemies.size() > 0) {
-                        auto target = *std::max_element(enemies.begin(), enemies.end(), [=](GW::Agent* a, GW::Agent* b) {
+                    if (closeAgents.size() > 0) {
+                        auto target = *std::max_element(closeAgents.begin(), closeAgents.end(), [=](GW::Agent* a, GW::Agent* b) {
+                            if (!a)
+                                return true;
+                            if (!b)
+                                return false;
+
+                            if ((a->GetIsDead() && !b->GetIsDead())
+                                || (!a->GetIsDead() && b->GetIsDead())) {
+                                // prioritize alive agents
+                                return a->GetIsDead();
+                            }
+
+                            if ((a->Allegiance == 3 && b->Allegiance != 3)
+                                || (a->Allegiance != 3 && b->Allegiance == 3)) {
+                                // prioritize enemy agents
+                                return b->Allegiance == 3;
+                            }
+
+                            if ((a->GetIsSpawned() && !b->GetIsSpawned())
+                                || (!a->GetIsSpawned() && b->GetIsSpawned())) {
+                                // prioritize non spirits
+                                return a->GetIsSpawned();
+                            }
+
                             auto distanceA = a->pos.SquaredDistanceTo(pos);
                             auto distanceB = b->pos.SquaredDistanceTo(pos);
                             return distanceA < distanceB;
                         });
 
-                        targetEnemyId = target->Id;
-                        GW::Agents().Move(pos);
-                    }
-                    else if (npcs.size() > 0) {
-                        auto target = *std::max_element(npcs.begin(), npcs.end(), [=](GW::Agent* a, GW::Agent* b) {
-                            auto distanceA = a->pos.SquaredDistanceTo(pos);
-                            auto distanceB = b->pos.SquaredDistanceTo(pos);
-                            return distanceA < distanceB;
-                        });
-
-                        targetNpcId = target->Id;
-                        GW::Agents().Move(pos);
+                        SetTargetAgentId(target->Id);
                     }
                     else {
-                        targetEnemyId = 0;
-                        targetNpcId = 0;
+                        SetTargetAgentId(0);
                         GW::Agents().Move(pos);
                     }
                 });
             }
 
-            DWORD AggressiveMoveTo::GetTargetEnemyId() {
-                return targetEnemyId;
+            DWORD AggressiveMoveTo::GetTargetAgentId() {
+                return targetAgentId;
             }
 
-            void AggressiveMoveTo::SetTargetEnemyId(DWORD agentId) {
-                targetEnemyId = agentId;
-            }
-
-            DWORD AggressiveMoveTo::GetTargetNpcId() {
-                return targetNpcId;
-            }
-
-            void AggressiveMoveTo::SetTargetNpcId(DWORD agentId) {
-                targetNpcId = agentId;
+            void AggressiveMoveTo::SetTargetAgentId(DWORD agentId) {
+                targetAgentId = agentId;
             }
         }
     }

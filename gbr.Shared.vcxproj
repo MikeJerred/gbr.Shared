@@ -125,6 +125,7 @@
     <ClInclude Include="Commands\DropBuff.h" />
     <ClInclude Include="Commands\MoveTo.h" />
     <ClInclude Include="Commands\Resign.h" />
+    <ClInclude Include="Commands\Terminate.h" />
     <ClInclude Include="Commands\UseSkill.h" />
     <ClInclude Include="Dependencies\json\json.hpp" />
   </ItemGroup>
@@ -135,6 +136,7 @@
     <ClCompile Include="Commands\DropBuff.cpp" />
     <ClCompile Include="Commands\MoveTo.cpp" />
     <ClCompile Include="Commands\Resign.cpp" />
+    <ClCompile Include="Commands\Terminate.cpp" />
     <ClCompile Include="Commands\UseSkill.cpp" />
   </ItemGroup>
   <ItemGroup>
