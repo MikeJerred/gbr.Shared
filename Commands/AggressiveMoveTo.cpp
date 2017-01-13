@@ -6,6 +6,7 @@ namespace gbr {
     namespace Shared {
         namespace Commands {
             DWORD AggressiveMoveTo::targetAgentId = 0;
+            GW::Maybe<GW::GamePos> AggressiveMoveTo::spiritPos = GW::Maybe<GW::GamePos>::Nothing;
 
             void AggressiveMoveTo::Execute(Request* request) {
                 auto pos = GW::GamePos(request->x, request->y, request->zPlane);
@@ -51,9 +52,11 @@ namespace gbr {
                         });
 
                         SetTargetAgentId(target->Id);
+                        SetSpiritPos(GW::Maybe<GW::GamePos>::Nothing);
                     }
                     else {
                         SetTargetAgentId(0);
+                        SetSpiritPos(pos);
                         GW::Agents().Move(pos);
                     }
                 });
@@ -65,6 +68,14 @@ namespace gbr {
 
             void AggressiveMoveTo::SetTargetAgentId(DWORD agentId) {
                 targetAgentId = agentId;
+            }
+
+            GW::Maybe<GW::GamePos> AggressiveMoveTo::GetSpiritPos() {
+                return spiritPos;
+            }
+
+            void AggressiveMoveTo::SetSpiritPos(GW::Maybe<GW::GamePos> pos) {
+                spiritPos = pos;
             }
         }
     }

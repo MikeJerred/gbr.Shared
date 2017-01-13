@@ -1,5 +1,6 @@
 #pragma once
 
+#include <GWCA/Utilities/Maybe.h>
 #include "BaseCommand.h"
 
 namespace gbr {
@@ -16,10 +17,14 @@ namespace gbr {
                 };
 
                 static void Execute(Request* request);
+
                 static DWORD GetTargetAgentId();
                 static void SetTargetAgentId(DWORD agentId);
+                static GW::Maybe<GW::GamePos> GetSpiritPos();
+                static void SetSpiritPos(GW::Maybe<GW::GamePos> pos);
             private:
                 static DWORD targetAgentId;
+                static GW::Maybe<GW::GamePos> spiritPos;
             };
         }
     }
