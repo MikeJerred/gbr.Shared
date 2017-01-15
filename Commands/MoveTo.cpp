@@ -1,5 +1,7 @@
 #include <json/json.hpp>
+#include <GWCA/Utilities/Maybe.h>
 
+#include "AggressiveMoveTo.h"
 #include "MoveTo.h"
 
 namespace gbr {
@@ -28,6 +30,8 @@ namespace gbr {
 
             void MoveTo::Execute(Request* request) {
                 auto pos = GW::GamePos(request->x, request->y, request->zPlane);
+                AggressiveMoveTo::SetSpiritPos(GW::Maybe<GW::GamePos>::Nothing());
+                AggressiveMoveTo::SetTargetAgentId(0);
 
                 GW::Gamethread().Enqueue([=]() {
                     GW::Agents().Move(pos);
