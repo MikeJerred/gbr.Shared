@@ -12,7 +12,8 @@ namespace gbr {
                 DropBuff,
                 Resign,
                 AggressiveMoveTo,
-                Terminate
+                Terminate,
+                ToggleRender
             };
 
 

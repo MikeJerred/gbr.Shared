@@ -4,6 +4,7 @@
 #include "MoveTo.h"
 #include "Resign.h"
 #include "Terminate.h"
+#include "ToggleRender.h"
 #include "UseSkill.h"
 
 namespace gbr {
@@ -28,6 +29,9 @@ namespace gbr {
                     break;
                 case CommandType::Terminate:
                     return Terminate::Execute(static_cast<Terminate::Request*>(request));
+                    break;
+                case CommandType::ToggleRender:
+                    ToggleRender::Execute(static_cast<ToggleRender::Request*>(request));
                     break;
                 default:
                     throw std::invalid_argument(std::string("Invalid Command Type: ") + std::to_string((int)request->type));
