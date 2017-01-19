@@ -1,5 +1,6 @@
 #pragma once
 
+#include <GWCA/Utilities/Maybe.h>
 #include "BaseCommand.h"
 
 namespace gbr {

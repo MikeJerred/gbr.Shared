@@ -9,6 +9,8 @@ namespace gbr {
         namespace Commands {
             using json = nlohmann::json;
 
+            GW::Maybe<GW::GamePos> MoveTo::currentPos = GW::Maybe<GW::GamePos>::Nothing();
+
             MoveTo::Request::Request(const char* s) : Request() {
                 auto obj = json::parse(s);
                 auto x = obj["x"];
