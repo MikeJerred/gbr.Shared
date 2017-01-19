@@ -1,5 +1,6 @@
 #include <algorithm>
 
+#include "MoveTo.h"
 #include "AggressiveMoveTo.h"
 
 namespace gbr {
@@ -53,10 +54,12 @@ namespace gbr {
 
                         SetTargetAgentId(target->Id);
                         SetSpiritPos(GW::Maybe<GW::GamePos>::Nothing());
+                        MoveTo::SetPos(GW::Maybe<GW::GamePos>::Nothing());
                     }
                     else {
                         SetTargetAgentId(0);
                         SetSpiritPos(pos);
+                        MoveTo::SetPos(GW::Maybe<GW::GamePos>::Nothing());
                         GW::Agents().Move(pos);
                     }
                 });

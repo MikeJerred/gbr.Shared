@@ -32,10 +32,19 @@ namespace gbr {
                 auto pos = GW::GamePos(request->x, request->y, request->zPlane);
                 AggressiveMoveTo::SetSpiritPos(GW::Maybe<GW::GamePos>::Nothing());
                 AggressiveMoveTo::SetTargetAgentId(0);
+                SetPos(pos);
 
                 GW::Gamethread().Enqueue([=]() {
                     GW::Agents().Move(pos);
                 });
+            }
+
+            GW::Maybe<GW::GamePos> MoveTo::GetPos() {
+                return currentPos;
+            }
+
+            void MoveTo::SetPos(GW::Maybe<GW::GamePos> pos) {
+                currentPos = pos;
             }
         }
     }

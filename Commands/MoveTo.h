@@ -6,6 +6,8 @@ namespace gbr {
     namespace Shared {
         namespace Commands {
             class MoveTo : public BaseCommand {
+            private:
+                static GW::Maybe<GW::GamePos> currentPos;
             public:
                 struct Request : public BaseRequest {
                     Request() : BaseRequest(CommandType::MoveTo) {}
@@ -17,6 +19,9 @@ namespace gbr {
                 };
 
                 static void Execute(Request* request);
+
+                static GW::Maybe<GW::GamePos> GetPos();
+                static void SetPos(GW::Maybe<GW::GamePos> pos);
             };
         }
     }

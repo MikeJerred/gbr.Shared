@@ -7,6 +7,9 @@ namespace gbr {
     namespace Shared {
         namespace Commands {
             class AggressiveMoveTo : public BaseCommand {
+            private:
+                static DWORD targetAgentId;
+                static GW::Maybe<GW::GamePos> spiritPos;
             public:
                 struct Request : public BaseRequest {
                     Request() : BaseRequest(CommandType::AggressiveMoveTo) {}
@@ -22,9 +25,6 @@ namespace gbr {
                 static void SetTargetAgentId(DWORD agentId);
                 static GW::Maybe<GW::GamePos> GetSpiritPos();
                 static void SetSpiritPos(GW::Maybe<GW::GamePos> pos);
-            private:
-                static DWORD targetAgentId;
-                static GW::Maybe<GW::GamePos> spiritPos;
             };
         }
     }
