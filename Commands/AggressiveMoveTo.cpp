@@ -24,21 +24,23 @@ namespace gbr {
 
                     if (closeAgents.size() > 0) {
                         auto target = *std::max_element(closeAgents.begin(), closeAgents.end(), [=](GW::Agent* a, GW::Agent* b) {
-                            if (!a)
+                            if (!a || a->GetIsItemType())
                                 return true;
-                            if (!b)
+                            if (!b || b->GetIsItemType())
                                 return false;
 
-                            if ((a->GetIsDead() && !b->GetIsDead())
-                                || (!a->GetIsDead() && b->GetIsDead())) {
-                                // prioritize alive agents
-                                return a->GetIsDead();
+                            if ((a->Allegiance == 3 && !a->GetIsDead() && !a->GetIsSpawned() && b->Allegiance != 3)
+                                || (a->Allegiance != 3 && !b->GetIsDead() && !b->GetIsSpawned() && b->Allegiance == 3)) {
+                                // prioritize non-spirit enemy agents that are alive
+                                return b->Allegiance == 3;
                             }
 
-                            if ((a->Allegiance == 3 && b->Allegiance != 3)
-                                || (a->Allegiance != 3 && b->Allegiance == 3)) {
-                                // prioritize enemy agents
-                                return b->Allegiance == 3;
+                            if ((a->IsPlayer() && a->GetIsDead()
+                                && !(b->IsPlayer() && b->GetIsDead()))
+                                || (b->IsPlayer() && b->GetIsDead()
+                                    && !(a->IsPlayer() && a->GetIsDead()))) {
+                                // prioritize dead players
+                                return b->IsPlayer() && b->GetIsDead();
                             }
 
                             if ((a->GetIsSpawned() && !b->GetIsSpawned())
