@@ -24,6 +24,9 @@ namespace gbr {
 
                     if (closeAgents.size() > 0) {
                         auto target = *std::max_element(closeAgents.begin(), closeAgents.end(), [=](GW::Agent* a, GW::Agent* b) {
+                            if (a == b)
+                                return false;
+
                             if (!a || a->GetIsItemType())
                                 return true;
                             if (!b || b->GetIsItemType())
@@ -51,7 +54,7 @@ namespace gbr {
 
                             auto distanceA = a->pos.SquaredDistanceTo(pos);
                             auto distanceB = b->pos.SquaredDistanceTo(pos);
-                            return distanceA < distanceB;
+                            return distanceB < distanceA;
                         });
 
                         SetTargetAgentId(target->Id);
