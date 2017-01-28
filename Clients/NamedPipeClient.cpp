@@ -4,7 +4,7 @@ namespace gbr {
     namespace Shared {
         namespace Clients {
             const std::initializer_list<std::wstring> SingletonNamedPipeClient::names = {
-                L"A S L Force",
+                L"W T F Force", //L"A S L Force",
                 L"Callisto Delta",
                 L"Violetta Alpha",
                 L"Bellatrix Beta",
