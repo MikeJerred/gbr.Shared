@@ -14,42 +14,40 @@ namespace gbr {
 
                 GW::Gamethread().Enqueue([=]() {
                     std::vector<GW::Agent*> closeAgents;
-                    const auto adjacentSq = GW::Constants::Range::Adjacent * GW::Constants::Range::Adjacent;
-
                     for (auto agent : GW::Agents().GetAgentArray()) {
-                        if (agent && agent->pos.SquaredDistanceTo(pos) < adjacentSq) {
+                        if (agent && agent->pos.SquaredDistanceTo(pos) < GW::Constants::SqrRange::Adjacent) {
                             closeAgents.push_back(agent);
                         }
                     }
 
                     if (closeAgents.size() > 0) {
                         auto target = *std::max_element(closeAgents.begin(), closeAgents.end(), [=](GW::Agent* a, GW::Agent* b) {
-                            if (a == b)
-                                return false;
+                            if (!a || !b || a->GetIsItemType() || b->GetIsItemType()) {
+                                if (a && !a->GetIsItemType())
+                                    return false;
 
-                            if (!a || a->GetIsItemType())
-                                return true;
-                            if (!b || b->GetIsItemType())
-                                return false;
+                                if (b && !b->GetIsItemType())
+                                    return true;
 
-                            if ((a->Allegiance == 3 && !a->GetIsDead() && !a->GetIsSpawned() && b->Allegiance != 3)
-                                || (a->Allegiance != 3 && !b->GetIsDead() && !b->GetIsSpawned() && b->Allegiance == 3)) {
+                                return b->Id < a->Id;
+                            }
+
+                            auto isEnemy = [](GW::Agent* agent) { return !agent->IsPlayer() && agent->Allegiance == 3 && !agent->GetIsDead() && !agent->GetIsSpawned(); };
+                            if (isEnemy(a) != isEnemy(b)) {
                                 // prioritize non-spirit enemy agents that are alive
-                                return b->Allegiance == 3;
+                                return isEnemy(b);
                             }
 
-                            if ((a->IsPlayer() && a->GetIsDead()
-                                && !(b->IsPlayer() && b->GetIsDead()))
-                                || (b->IsPlayer() && b->GetIsDead()
-                                    && !(a->IsPlayer() && a->GetIsDead()))) {
+                            auto isDeadPlayer = [](GW::Agent* agent) { return agent->IsPlayer() && agent->GetIsDead(); };
+                            if (isDeadPlayer(a) != isDeadPlayer(b)) {
                                 // prioritize dead players
-                                return b->IsPlayer() && b->GetIsDead();
+                                return isDeadPlayer(b);
                             }
 
-                            if ((a->GetIsSpawned() && !b->GetIsSpawned())
-                                || (!a->GetIsSpawned() && b->GetIsSpawned())) {
+                            auto isSpirit = [](GW::Agent* agent) { return agent->GetIsSpawned(); };
+                            if (isSpirit(a) != isSpirit(b)) {
                                 // prioritize non spirits
-                                return a->GetIsSpawned();
+                                return !isSpirit(b);
                             }
 
                             auto distanceA = a->pos.SquaredDistanceTo(pos);
