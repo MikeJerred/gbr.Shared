@@ -25,6 +25,8 @@ namespace gbr {
                 static void SetTargetAgentId(DWORD agentId);
                 static GW::Maybe<GW::GamePos> GetSpiritPos();
                 static void SetSpiritPos(GW::Maybe<GW::GamePos> pos);
+
+                static bool IsSpirit(GW::Agent* agent);
             };
         }
     }

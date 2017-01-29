@@ -122,6 +122,7 @@
     <ClInclude Include="Clients\NamedPipeClient.h" />
     <ClInclude Include="Commands\AggressiveMoveTo.h" />
     <ClInclude Include="Commands\BaseCommand.h" />
+    <ClInclude Include="Commands\Disperse.h" />
     <ClInclude Include="Commands\DropBuff.h" />
     <ClInclude Include="Commands\MoveTo.h" />
     <ClInclude Include="Commands\Resign.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Clients\NamedPipeClient.cpp" />
     <ClCompile Include="Commands\AggressiveMoveTo.cpp" />
     <ClCompile Include="Commands\BaseCommand.cpp" />
+    <ClCompile Include="Commands\Disperse.cpp" />
     <ClCompile Include="Commands\DropBuff.cpp" />
     <ClCompile Include="Commands\MoveTo.cpp" />
     <ClCompile Include="Commands\Resign.cpp" />

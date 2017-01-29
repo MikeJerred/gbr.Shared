@@ -45,6 +45,9 @@
     <ClInclude Include="Commands\ToggleRender.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Commands\Disperse.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Commands\BaseCommand.cpp">
@@ -72,6 +75,9 @@
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="Commands\ToggleRender.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\Disperse.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>

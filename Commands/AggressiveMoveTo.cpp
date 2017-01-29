@@ -32,7 +32,7 @@ namespace gbr {
                                 return b->Id < a->Id;
                             }
 
-                            auto isEnemy = [](GW::Agent* agent) { return !agent->IsPlayer() && agent->Allegiance == 3 && !agent->GetIsDead() && !agent->GetIsSpawned(); };
+                            auto isEnemy = [](GW::Agent* agent) { return !agent->IsPlayer() && agent->Allegiance == 3 && !agent->GetIsDead() && !IsSpirit(agent); };
                             if (isEnemy(a) != isEnemy(b)) {
                                 // prioritize non-spirit enemy agents that are alive
                                 return isEnemy(b);
@@ -44,10 +44,9 @@ namespace gbr {
                                 return isDeadPlayer(b);
                             }
 
-                            auto isSpirit = [](GW::Agent* agent) { return agent->GetIsSpawned(); };
-                            if (isSpirit(a) != isSpirit(b)) {
+                            if (IsSpirit(a) != IsSpirit(b)) {
                                 // prioritize non spirits
-                                return !isSpirit(b);
+                                return !IsSpirit(b);
                             }
 
                             auto distanceA = a->pos.SquaredDistanceTo(pos);
@@ -82,6 +81,23 @@ namespace gbr {
 
             void AggressiveMoveTo::SetSpiritPos(GW::Maybe<GW::GamePos> pos) {
                 spiritPos = pos;
+            }
+
+            bool AggressiveMoveTo::IsSpirit(GW::Agent* agent) {
+                switch (agent->PlayerNumber) {
+                case GW::Constants::ModelID::QZ:
+                case GW::Constants::ModelID::Winnowing:
+                case GW::Constants::ModelID::EoE:
+                case GW::Constants::ModelID::InfuriatingHeat:
+                case GW::Constants::ModelID::Equinox:
+                case GW::Constants::ModelID::Famine:
+                case GW::Constants::ModelID::FrozenSoil:
+                case GW::Constants::ModelID::Quicksand:
+                case GW::Constants::ModelID::Lacerate:
+                    return true;
+                default:
+                    return false;
+                }
             }
         }
     }

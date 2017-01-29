@@ -13,7 +13,8 @@ namespace gbr {
                 Resign,
                 AggressiveMoveTo,
                 Terminate,
-                ToggleRender
+                ToggleRender,
+                Disperse
             };
 
 

@@ -1,6 +1,7 @@
 #include "BaseCommand.h"
 #include "AggressiveMoveTo.h"
 #include "DropBuff.h"
+#include "Disperse.h"
 #include "MoveTo.h"
 #include "Resign.h"
 #include "Terminate.h"
@@ -32,6 +33,9 @@ namespace gbr {
                     break;
                 case CommandType::ToggleRender:
                     ToggleRender::Execute(static_cast<ToggleRender::Request*>(request));
+                    break;
+                case CommandType::Disperse:
+                    Disperse::Execute(static_cast<Disperse::Request*>(request));
                     break;
                 default:
                     throw std::invalid_argument(std::string("Invalid Command Type: ") + std::to_string((int)request->type));
