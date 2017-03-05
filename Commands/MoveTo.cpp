@@ -1,15 +1,16 @@
 #include <json/json.hpp>
 #include <GWCA/Utilities/Maybe.h>
 
-#include "AggressiveMoveTo.h"
+#include "InteractAgent.h"
 #include "MoveTo.h"
+#include "PlaceSpirit.h"
 
 namespace gbr {
     namespace Shared {
         namespace Commands {
             using json = nlohmann::json;
 
-            GW::Maybe<GW::GamePos> MoveTo::currentPos = GW::Maybe<GW::GamePos>::Nothing();
+            GW::Maybe<GW::GamePos> MoveTo::currentPos = GW::Nothing<GW::GamePos>();
 
             MoveTo::Request::Request(const char* s) : Request() {
                 auto obj = json::parse(s);
@@ -32,8 +33,8 @@ namespace gbr {
 
             void MoveTo::Execute(Request* request) {
                 auto pos = GW::GamePos(request->x, request->y, request->zPlane);
-                AggressiveMoveTo::SetSpiritPos(GW::Maybe<GW::GamePos>::Nothing());
-                AggressiveMoveTo::SetTargetAgentId(0);
+                InteractAgent::ClearAgentId();
+                PlaceSpirit::ClearSpiritPos();
                 SetPos(pos);
 
                 GW::Gamethread().Enqueue([=]() {
@@ -45,8 +46,12 @@ namespace gbr {
                 return currentPos;
             }
 
-            void MoveTo::SetPos(GW::Maybe<GW::GamePos> pos) {
+            void MoveTo::SetPos(GW::GamePos pos) {
                 currentPos = pos;
+            }
+
+            void MoveTo::ClearPos() {
+                currentPos = GW::Nothing<GW::GamePos>();
             }
         }
     }

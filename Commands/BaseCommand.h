@@ -11,10 +11,11 @@ namespace gbr {
                 UseSkill,
                 DropBuff,
                 Resign,
-                AggressiveMoveTo,
+                PlaceSpirit,
                 Terminate,
                 ToggleRender,
-                Disperse
+                Disperse,
+                InteractAgent
             };
 
 

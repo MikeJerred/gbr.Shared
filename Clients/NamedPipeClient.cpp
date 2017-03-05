@@ -16,7 +16,7 @@ namespace gbr {
 
             NamedPipeClient::NamedPipeClient(const wchar_t* name) {
                 auto nameString = std::wstring(L"\\\\.\\pipe\\gbr_") + name;
-                pipeHandle = CreateFile(
+                pipeHandle = CreateFileW(
                     nameString.c_str(),
                     GENERIC_WRITE | GENERIC_READ,
                     0,

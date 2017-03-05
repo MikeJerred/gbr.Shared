@@ -1,8 +1,9 @@
 #include "BaseCommand.h"
-#include "AggressiveMoveTo.h"
 #include "DropBuff.h"
 #include "Disperse.h"
+#include "InteractAgent.h"
 #include "MoveTo.h"
+#include "PlaceSpirit.h"
 #include "Resign.h"
 #include "Terminate.h"
 #include "ToggleRender.h"
@@ -25,8 +26,8 @@ namespace gbr {
                 case CommandType::Resign:
                     Resign::Execute(static_cast<Resign::Request*>(request));
                     break;
-                case CommandType::AggressiveMoveTo:
-                    AggressiveMoveTo::Execute(static_cast<AggressiveMoveTo::Request*>(request));
+                case CommandType::PlaceSpirit:
+                    PlaceSpirit::Execute(static_cast<PlaceSpirit::Request*>(request));
                     break;
                 case CommandType::Terminate:
                     return Terminate::Execute(static_cast<Terminate::Request*>(request));
@@ -36,6 +37,9 @@ namespace gbr {
                     break;
                 case CommandType::Disperse:
                     Disperse::Execute(static_cast<Disperse::Request*>(request));
+                    break;
+                case CommandType::InteractAgent:
+                    InteractAgent::Execute(static_cast<InteractAgent::Request*>(request));
                     break;
                 default:
                     throw std::invalid_argument(std::string("Invalid Command Type: ") + std::to_string((int)request->type));

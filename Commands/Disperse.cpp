@@ -2,8 +2,9 @@
 #include <GWCA/Managers/PartyMgr.h>
 
 #include "Disperse.h"
-#include "AggressiveMoveTo.h"
+#include "InteractAgent.h"
 #include "MoveTo.h"
+#include "PlaceSpirit.h"
 
 namespace gbr {
     namespace Shared {
@@ -37,8 +38,8 @@ namespace gbr {
                     auto newY = radius * sin(angle);
                     auto newPos = GW::GamePos(newX + x, newY + y);
 
-                    AggressiveMoveTo::SetSpiritPos(GW::Maybe<GW::GamePos>::Nothing());
-                    AggressiveMoveTo::SetTargetAgentId(0);
+                    InteractAgent::ClearAgentId();
+                    PlaceSpirit::ClearSpiritPos();
                     MoveTo::SetPos(newPos);
 
                     GW::Agents().Move(newPos);

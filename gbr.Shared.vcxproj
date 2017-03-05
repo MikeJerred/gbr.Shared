@@ -35,7 +35,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -73,8 +73,8 @@
     <LibraryPath>$(OutDir);$(SolutionDir)Dependencies\GWCA\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)GWCA;$(ProjectDir)Dependencies;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)GWCA;$(ProjectDir)Dependencies;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies;$(ProjectDir)Dependencies;$(SolutionDir)Dependencies\GWCA;$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(SolutionDir)Dependencies\GWCA\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -120,7 +120,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Clients\NamedPipeClient.h" />
-    <ClInclude Include="Commands\AggressiveMoveTo.h" />
+    <ClInclude Include="Commands\InteractAgent.h" />
+    <ClInclude Include="Commands\PlaceSpirit.h" />
     <ClInclude Include="Commands\BaseCommand.h" />
     <ClInclude Include="Commands\Disperse.h" />
     <ClInclude Include="Commands\DropBuff.h" />
@@ -133,7 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Clients\NamedPipeClient.cpp" />
-    <ClCompile Include="Commands\AggressiveMoveTo.cpp" />
+    <ClCompile Include="Commands\InteractAgent.cpp" />
+    <ClCompile Include="Commands\PlaceSpirit.cpp" />
     <ClCompile Include="Commands\BaseCommand.cpp" />
     <ClCompile Include="Commands\Disperse.cpp" />
     <ClCompile Include="Commands\DropBuff.cpp" />

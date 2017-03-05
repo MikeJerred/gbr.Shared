@@ -22,7 +22,8 @@ namespace gbr {
                 static void Execute(Request* request);
 
                 static GW::Maybe<GW::GamePos> GetPos();
-                static void SetPos(GW::Maybe<GW::GamePos> pos);
+                static void SetPos(GW::GamePos pos);
+                static void ClearPos();
             };
         }
     }

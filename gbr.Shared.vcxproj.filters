@@ -36,9 +36,6 @@
     <ClInclude Include="Clients\NamedPipeClient.h">
       <Filter>Clients</Filter>
     </ClInclude>
-    <ClInclude Include="Commands\AggressiveMoveTo.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
     <ClInclude Include="Commands\Terminate.h">
       <Filter>Commands</Filter>
     </ClInclude>
@@ -46,6 +43,12 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="Commands\Disperse.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\PlaceSpirit.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\InteractAgent.h">
       <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,9 +71,6 @@
     <ClCompile Include="Clients\NamedPipeClient.cpp">
       <Filter>Clients</Filter>
     </ClCompile>
-    <ClCompile Include="Commands\AggressiveMoveTo.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
     <ClCompile Include="Commands\Terminate.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
@@ -78,6 +78,12 @@
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="Commands\Disperse.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\PlaceSpirit.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\InteractAgent.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>
