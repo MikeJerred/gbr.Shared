@@ -1,5 +1,6 @@
 #include <json/json.hpp>
 #include <GWCA/Managers/EffectMgr.h>
+#include <GWCA/Managers/GameThreadMgr.h>
 
 #include "DropBuff.h"
 
@@ -22,10 +23,10 @@ namespace gbr {
             }
 
             void DropBuff::Execute(Request* request) {
-                GW::Gamethread().Enqueue([=]() {
-                    auto buff = GW::Effects().GetPlayerBuffBySkillId(request->skillId);
+                GW::GameThread::Enqueue([=]() {
+                    auto buff = GW::Effects::GetPlayerBuffBySkillId(request->skillId);
                     if (buff.BuffId != 0)
-                        GW::Effects().DropBuff(buff.BuffId);
+                        GW::Effects::DropBuff(buff.BuffId);
                 });
             }
         }

@@ -1,3 +1,6 @@
+#include <stdexcept>
+#include <string>
+
 #include "BaseCommand.h"
 #include "DropBuff.h"
 #include "Disperse.h"

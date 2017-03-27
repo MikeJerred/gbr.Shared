@@ -1,4 +1,6 @@
 #include <json/json.hpp>
+#include <GWCA/Managers/AgentMgr.h>
+#include <GWCA/Managers/GameThreadMgr.h>
 #include <GWCA/Utilities/Maybe.h>
 
 #include "InteractAgent.h"
@@ -37,8 +39,8 @@ namespace gbr {
                 PlaceSpirit::ClearSpiritPos();
                 SetPos(pos);
 
-                GW::Gamethread().Enqueue([=]() {
-                    GW::Agents().Move(pos);
+                GW::GameThread::Enqueue([=]() {
+                    GW::Agents::Move(pos);
                 });
             }
 

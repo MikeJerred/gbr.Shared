@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Windows.h>
+#include <vector>
 #include <GWCA/GWCA.h>
 
 namespace gbr {

@@ -1,4 +1,5 @@
 #include <json/json.hpp>
+#include <GWCA/Managers/GameThreadMgr.h>
 #include <GWCA/Managers/SkillbarMgr.h>
 
 #include "UseSkill.h"
@@ -31,8 +32,8 @@ namespace gbr {
             }
 
             void UseSkill::Execute(Request* request) {
-                GW::Gamethread().Enqueue([=]() {
-                    GW::Skillbarmgr().UseSkillByID(static_cast<DWORD>(request->skillId), request->targetId, request->ping);
+                GW::GameThread::Enqueue([=]() {
+                    GW::SkillbarMgr::UseSkillByID(static_cast<DWORD>(request->skillId), request->targetId, request->ping);
                 });
             }
         }

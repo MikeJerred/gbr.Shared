@@ -1,4 +1,6 @@
 #include <GWCA/GWCA.h>
+#include <GWCA/Managers/AgentMgr.h>
+#include <GWCA/Managers/GameThreadMgr.h>
 #include <GWCA/Managers/PartyMgr.h>
 
 #include "Disperse.h"
@@ -13,14 +15,14 @@ namespace gbr {
                 auto x = request->x;
                 auto y = request->y;
 
-                GW::Gamethread().Enqueue([=]() {
-                    auto player = GW::Agents().GetPlayer();
-                    auto party = GW::Partymgr().GetPartyInfo();
+                GW::GameThread::Enqueue([=]() {
+                    auto player = GW::Agents::GetPlayer();
+                    auto party = GW::PartyMgr::GetPartyInfo();
 
                     if (!player || !party || !party->players.valid())
                         return;
 
-                    auto players = GW::Partymgr().GetPartyInfo()->players;
+                    auto players = GW::PartyMgr::GetPartyInfo()->players;
 
                     auto index = 0;
 
@@ -42,7 +44,7 @@ namespace gbr {
                     PlaceSpirit::ClearSpiritPos();
                     MoveTo::SetPos(newPos);
 
-                    GW::Agents().Move(newPos);
+                    GW::Agents::Move(newPos);
                 });
             }
         }

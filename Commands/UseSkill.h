@@ -1,5 +1,6 @@
 #pragma once
 
+#include <GWCA/Constants/Skills.h>
 #include "BaseCommand.h"
 
 namespace gbr {
