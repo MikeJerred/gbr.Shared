@@ -11,7 +11,7 @@ namespace gbr {
 
             void Resign::Execute(Request* request) {
                 GW::GameThread::Enqueue([]() {
-                    GW::Chat::SendChat(L"resign", L'/');
+                    GW::Chat::SendChat(L'/', L"resign");
                 });
             }
         }
