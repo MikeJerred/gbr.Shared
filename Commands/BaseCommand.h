@@ -15,7 +15,8 @@ namespace gbr {
                 Terminate,
                 ToggleRender,
                 Disperse,
-                InteractAgent
+                InteractAgent,
+				Seed
             };
 
 

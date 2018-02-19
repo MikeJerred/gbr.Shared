@@ -51,6 +51,9 @@
     <ClInclude Include="Commands\InteractAgent.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Commands\Seed.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Commands\BaseCommand.cpp">
@@ -84,6 +87,9 @@
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="Commands\InteractAgent.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\Seed.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>

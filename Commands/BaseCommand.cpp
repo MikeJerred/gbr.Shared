@@ -8,6 +8,7 @@
 #include "MoveTo.h"
 #include "PlaceSpirit.h"
 #include "Resign.h"
+#include "Seed.h"
 #include "Terminate.h"
 #include "ToggleRender.h"
 #include "UseSkill.h"
@@ -44,6 +45,9 @@ namespace gbr {
                 case CommandType::InteractAgent:
                     InteractAgent::Execute(static_cast<InteractAgent::Request*>(request));
                     break;
+				case CommandType::Seed:
+					Seed::Execute(static_cast<Seed::Request*>(request));
+					break;
                 default:
                     throw std::invalid_argument(std::string("Invalid Command Type: ") + std::to_string((int)request->type));
                 }
